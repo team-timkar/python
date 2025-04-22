@@ -1,5 +1,5 @@
-# Dockerfile for Python 3.8 with pipenv
-FROM python:3.14.0a7-bookworm
+# Dockerfile for Python with pipenv
+FROM python:3.12.10-slim-bookworm
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
@@ -36,7 +36,7 @@ RUN mkdir -p /workspaces && chown -R $USERNAME:$USERNAME /workspaces
 RUN mkdir -p /home/$USERNAME/.vscode-server \
     && chown -R $USERNAME:$USERNAME /home/$USERNAME
 
-    # Set zsh as the default shell
+# Set zsh as the default shell
 RUN chsh -s /usr/bin/zsh vscode
 
 # Switch to non-root user for subsequent commands
