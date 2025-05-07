@@ -1,6 +1,6 @@
-name: Django-Dev
+name: PROJECT_NAME
 services:
-  django:
+  FRAMEWORK:
     build:
       context: ..
       dockerfile: .devcontainer/Dockerfile
