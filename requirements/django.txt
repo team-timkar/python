@@ -1,0 +1,6 @@
+Django[standard]
+gunicorn
+psycopg2-binary
+django-seeding  
+djangorestframework
+pandas

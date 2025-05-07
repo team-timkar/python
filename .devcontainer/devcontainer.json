@@ -1,7 +1,7 @@
 {
-    "name": "Django",
+    "name": "PROJECT_NAME",
     "dockerComposeFile": "compose.yaml",
-    "service": "django",
+    "service": "FRAMEWORK",
     "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
     "features": {
       "ghcr.io/devcontainers/features/common-utils:2": {
@@ -29,5 +29,5 @@
             }
         }
     },
-    "postCreateCommand": "pip install -r requirements.txt"
+    "postCreateCommand": "pip install -r requirements/PROJECT_NAME.txt"
 }
