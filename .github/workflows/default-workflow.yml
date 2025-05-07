@@ -1,0 +1,53 @@
+name: Create Python Project
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        required: true
+      framework:
+        type: choice
+        description: Which Framework
+        options: 
+        - django
+        - Flask
+        - fastapi
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.WORKFLOW_TOKEN }}
+
+      - name: Clean up project
+        uses: thynclabs/template-transformer-and-cleanup@1.0.2
+        with:
+          search_keyword: 'team-timkar/python'
+          replace_keyword: ${{ github.repository }}
+          github_url: ${{ github.server_url }}
+          workflow_token: ${{ secrets.WORKFLOW_TOKEN }}
+          repository: ${{ github.repository }}
+          branch: ${{ github.ref }}
+      - name: Set Framework
+        uses: thynclabs/template-transformer-and-cleanup@1.0.2
+        with:
+          search_keyword: FRAMEWORK
+          replace_keyword: ${{ github.event.inputs.framework }}
+          github_url: ${{ github.server_url }}
+          workflow_token: ${{ secrets.WORKFLOW_TOKEN }}
+          repository: ${{ github.repository }}
+          branch: ${{ github.ref }}
+      - name: Set Name
+        uses: thynclabs/template-transformer-and-cleanup@1.0.2
+        with:
+          search_keyword: PROJECT_NAME
+          replace_keyword: ${{ github.event.inputs.name }}
+          github_url: ${{ github.server_url }}
+          workflow_token: ${{ secrets.WORKFLOW_TOKEN }}
+          repository: ${{ github.repository }}
+          branch: ${{ github.ref }}
